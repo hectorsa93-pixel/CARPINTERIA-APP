@@ -1,0 +1,294 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0; /* Eliminamos el padding del body para que el splash screen tome todo el espacio */
+    min-height: 100vh;
+}
+
+/* Estilos para la Pantalla de Presentación */
+.splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f7f2e4; /* Un color de fondo suave, café claro */
+    color: #8b4513; /* Texto en tono café oscuro */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 1000; /* Asegura que esté por encima de todo */
+    transition: opacity 0.5s ease;
+}
+
+.splash-screen h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+}
+
+.splash-screen p {
+    font-size: 1.5em;
+    margin-bottom: 40px;
+    font-weight: 300;
+}
+
+.access-button {
+    padding: 15px 30px !important; 
+    font-size: 1.2em !important;
+    background-color: #a0522d !important;
+    border-radius: 8px !important;
+}
+
+.access-button:hover {
+    background-color: #8b4513 !important;
+}
+
+/* Clase para ocultar elementos con JavaScript */
+.hidden {
+    display: none !important;
+}
+
+/* ---------------------------------------------------------------- */
+/* Estilos del Contenedor Principal (Main-App-Container) */
+/* ---------------------------------------------------------------- */
+.container {
+    max-width: 1100px; 
+    margin: 20px auto; /* Añadimos margen aquí, no en el body */
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #8b4513;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.2em;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+.currency-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ddd;
+}
+
+.currency-header p {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+#registro-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 40px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fcfcfc;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #5a3d2b;
+}
+
+/* Aplicar bordes redondeados y fondo café claro a inputs y selects */
+input[type="text"],
+input[type="number"],
+input[type="month"],
+input[type="date"],
+input[type="week"],
+select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #f7f2e4;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="month"]:focus,
+input[type="date"]:focus,
+input[type="week"]:focus,
+select:focus {
+    border-color: #a0522d;
+    box-shadow: 0 0 5px rgba(160, 82, 45, 0.3);
+    outline: none;
+}
+
+
+/* Estilos generales para todos los botones */
+button {
+    padding: 12px;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+    transform: translateY(-1px);
+}
+
+/* Estilo específico para el botón de envío del formulario */
+#btnSubmit {
+    grid-column: span 2;
+    background-color: #a0522d;
+}
+
+#btnSubmit:hover {
+    background-color: #8b4513;
+}
+
+#btnAgregarLugar {
+    grid-column: auto;
+    width: 100%;
+    margin-top: 10px;
+    background-color: #4CAF50;
+}
+
+#btnAgregarLugar:hover {
+    background-color: #45a049;
+}
+
+#btnCambiarMoneda {
+    grid-column: auto;
+    width: auto;
+    background-color: #007bff;
+    padding: 8px 15px;
+}
+#btnCambiarMoneda:hover {
+    background-color: #0056b3;
+}
+
+/* Sección de acciones (Filtro, Búsqueda) */
+.table-actions {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: flex-start;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.table-actions label {
+    font-weight: bold;
+    color: #5a3d2b;
+}
+
+/* Sección de control de exportación */
+.export-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    padding: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    align-items: end;
+    background-color: #fdfdfd;
+}
+
+.export-controls #btnExportarPDF {
+    grid-column: 3;
+    padding: 10px;
+    margin: 0;
+    width: 100%;
+    background-color: #dc3545;
+}
+
+.export-controls #btnExportarPDF:hover {
+    background-color: #c82333;
+}
+
+.export-controls .input-group {
+    display: flex;
+    flex-direction: column;
+}
+.export-controls input, .export-controls select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f7f2e4;
+}
+
+
+/* Estilos de la Tabla */
+#registros-tabla {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#registros-tabla th, #registros-tabla td {
+    border: 1px solid #e0e0e0;
+    padding: 12px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+#registros-tabla th {
+    background-color: #f0e68c;
+    color: #333;
+    font-weight: bold;
+}
+
+#registros-tabla tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+#registros-tabla tr:hover {
+    background-color: #f5f5f5;
+}
+
+/* Botones de acción en la tabla (Editar, Eliminar) */
+.btn-editar, .btn-eliminar {
+    padding: 5px 8px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-editar {
+    background-color: #ffc107;
+    color: #333;
+    margin-right: 5px;
+}
+
+.btn-editar:hover {
+    background-color: #e0a800;
+    transform: translateY(-1px);
+}
+
+.btn-eliminar {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-eliminar:hover {
+    background-color: #c82333;
+    transform: translateY(-1px);
+}

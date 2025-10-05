@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Pago Carpintería</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+</head>
+<body>
+    
+    <div id="splash-screen" class="splash-screen">
+        <h1>👋 BIENVENIDO CESAR SANCHEZ 👋</h1>
+        <p>LUJO, DELICADEZA Y CALIDAD</p>
+        <button id="btnAccederApp" class="access-button">
+            ACCEDER A LA APLICACIÓN
+        </button>
+    </div>
+
+    <div id="main-app-container" class="container hidden">
+        <h1>✨ LUJO, DELICADEZA Y CALIDAD, CESAR SANCHEZ ✨</h1> 
+        
+        <div class="currency-header">
+            <button type="button" id="btnCambiarMoneda">
+                Cambiar a MXN
+            </button>
+            <p>Moneda actual: <span id="monedaActual">USD</span></p>
+        </div>
+
+        <form id="registro-form">
+            <input type="hidden" id="registroIndex" value="-1">
+
+            <div class="input-group">
+                <label for="nombre">Nombre del Trabajador:</label>
+                <input type="text" id="nombre" required>
+            </div>
+
+            <div class="input-group">
+                <label for="pagoHora">Pago por Hora Normal (<span id="simboloMonedaPago">USD $</span>):</label>
+                <input type="number" id="pagoHora" min="0" step="0.01" required>
+            </div>
+
+            <div class="input-group">
+                <label for="horasNormales">Horas Normales Trabajadas (máx 40):</label>
+                <input type="number" id="horasNormales" min="0" max="40" required>
+            </div>
+
+            <div class="input-group">
+                <label for="horasExtra">Horas Extras Trabajadas (factor 1.5):</label>
+                <input type="number" id="horasExtra" min="0" required value="0">
+            </div>
+
+            <div class="input-group">
+                <label for="lugarTrabajo">Lugar de Trabajo:</label>
+                <select id="lugarTrabajo" required>
+                    <option value="" disabled selected>Seleccione un lugar</option>
+                </select>
+                <button type="button" id="btnAgregarLugar">➕ Agregar Lugar</button>
+            </div>
+
+            <button type="submit" id="btnSubmit">Calcular y Registrar Pago</button>
+        </form>
+        
+        <hr>
+
+        <h2>📊 Registros de Pago</h2>
+        
+        <div class="table-actions">
+            <label for="filtroMes">Filtrar por Mes (Tabla):</label>
+            <input type="month" id="filtroMes" value="">
+            
+            <label for="filtroBusqueda">Buscar (Nombre/Lugar):</label>
+            <input type="text" id="filtroBusqueda" placeholder="Escribe nombre o lugar...">
+        </div>
+
+        <hr>
+
+        <h2>📄 Exportar Historial a PDF</h2>
+        <div class="export-controls">
+            <div class="input-group">
+                <label for="exportType">Tipo de Exportación:</label>
+                <select id="exportType">
+                    <option value="month">Por Mes</option>
+                    <option value="person">Por Persona (Acumulado)</option>
+                    <option value="date">Por Fecha Específica</option>
+                    <option value="week">Por Número de Semana</option>
+                </select>
+            </div>
+
+            <div class="input-group" id="dynamicExportFields">
+                <label for="exportValueMonth">Seleccionar Mes:</label>
+                <input type="month" id="exportValueMonth">
+            </div>
+
+            <button id="btnExportarPDF" style="grid-column: span 2;">Generar PDF</button>
+        </div>
+        
+        <hr>
+
+        <table id="registros-tabla">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Fecha</th>
+                    <th>H. Normales</th>
+                    <th>H. Extras</th>
+                    <th>Pago x Hora</th>
+                    <th>Lugar</th>
+                    <th>Pago Semanal Total</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="registros-body">
+                </tbody>
+        </table>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
